@@ -1,3 +1,6 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 /* Reset */
 * {
   margin: 0;
@@ -6,12 +9,13 @@
 }
 
 body {
-  background-color: #ffccaa; /* pastel orange */
-  color: white;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
+  background-color: #ffb3ba; /* pastel red initial */
+  color: #2c3e50;
   scroll-behavior: smooth;
   overflow-x: hidden;
   min-height: 100vh;
+  transition: background-color 0.5s ease;
 }
 
 header {
@@ -21,43 +25,47 @@ header {
   left: 0;
   padding: 1rem 2rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   background: transparent;
   z-index: 1000;
+  min-height: 80px; /* avoid jump when logo hides */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .logo {
-  font-size: 2.8rem;
-  font-weight: 900;
+  font-size: 3rem;
+  font-weight: 700;
   color: white;
   user-select: none;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+  margin-bottom: 0.5rem;
+  transition: opacity 0.4s ease;
+  opacity: 1;
+  pointer-events: auto;
 }
 
-/* Nav buttons */
 .nav-buttons {
   display: flex;
   gap: 1rem;
-  transition: opacity 0.3s ease;
   user-select: none;
 }
 
 .nav-btn {
-  background: transparent;
-  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
   color: white;
   padding: 0.6rem 1.3rem;
   border-radius: 30px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
   user-select: none;
-  position: relative;
-  overflow: hidden;
+  font-size: 0.95rem;
+  box-shadow: 0 0 10px rgba(255 255 255 / 0.3);
 }
 
 .nav-btn i {
@@ -67,12 +75,11 @@ header {
 .nav-btn:hover,
 .nav-btn.active {
   background-color: white;
-  color: #ff7f50; /* coral for highlight */
-  box-shadow: 0 0 15px white;
+  color: #ff7f50; /* coral highlight */
+  box-shadow: 0 0 20px white;
   transform: scale(1.05);
 }
 
-/* Button text fade on hover */
 .nav-btn .btn-text {
   transition: opacity 0.3s ease;
 }
@@ -81,12 +88,10 @@ header {
   opacity: 0;
 }
 
-/* Main container */
 main {
-  margin-top: 90px; /* header height */
+  margin-top: 100px; /* header height + padding */
 }
 
-/* Sections */
 .section {
   min-height: 100vh;
   padding: 6rem 1.5rem 3rem;
@@ -97,12 +102,14 @@ main {
   letter-spacing: 0.03em;
   position: relative;
   user-select: none;
+  color: #2c3e50;
+  transition: background-color 0.5s ease;
 }
 
 .section h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 6px rgba(255 255 255 / 0.7);
 }
 
 .section p {
@@ -110,7 +117,7 @@ main {
   margin: auto;
   font-size: 1.25rem;
   line-height: 1.6;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  text-shadow: 0 1px 4px rgba(255 255 255 / 0.5);
 }
 
 /* iPhone mockup */
@@ -166,23 +173,4 @@ main {
   box-shadow: 0 0 30px #ff7f50;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .iphone-mockup {
-    width: 200px;
-    height: 420px;
-  }
-  .section h1 {
-    font-size: 2.4rem;
-  }
-  .section p {
-    font-size: 1.1rem;
-  }
-  .nav-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-  .logo {
-    font-size: 2rem;
-  }
-}
+/*

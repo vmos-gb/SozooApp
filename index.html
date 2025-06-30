@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sozoo - Save, Play, Win</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
     rel="stylesheet"
   />
   <link
@@ -86,7 +86,17 @@
     </section>
   </main>
 
+  <footer>
+    <p>&copy; 2025 Sozoo. All rights reserved.</p>
+    <p>
+      Follow us on 
+      <a href="https://x.com/sozooapp" target="_blank" rel="noopener noreferrer">Twitter</a> and 
+      <a href="https://instagram.com/sozooapp" target="_blank" rel="noopener noreferrer">Instagram</a>.
+    </p>
+  </footer>
+
   <script>
+    // Navigation button click scroll and active class toggle
     const buttons = document.querySelectorAll(".nav-btn");
     const sections = document.querySelectorAll(".section");
 
@@ -118,21 +128,71 @@
       });
     });
 
-    // Show nav buttons only on header hover
-    const header = document.querySelector("header");
-    const navButtons = document.querySelector(".nav-buttons");
-    navButtons.style.opacity = "0";
-    navButtons.style.pointerEvents = "none";
-
-    header.addEventListener("mouseenter", () => {
-      navButtons.style.opacity = "1";
-      navButtons.style.pointerEvents = "auto";
+    // Logo fade out on scroll down, show only at top
+    const logo = document.querySelector('.logo');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY === 0) {
+        logo.style.opacity = '1';
+        logo.style.pointerEvents = 'auto';
+      } else {
+        logo.style.opacity = '0';
+        logo.style.pointerEvents = 'none';
+      }
     });
 
-    header.addEventListener("mouseleave", () => {
-      navButtons.style.opacity = "0";
-      navButtons.style.pointerEvents = "none";
+    // Background color interpolation on scroll between sections
+    const sectionsColors = [
+      { id: "home", color: [255, 179, 186] },       // #ffb3ba pastel red
+      { id: "game", color: [186, 225, 255] },       // #bae1ff pastel blue
+      { id: "challenges", color: [255, 255, 186] }, // #ffffba pastel yellow
+      { id: "leaderboards", color: [186, 255, 201] } // #baffc9 pastel green
+    ];
+
+    function interpolateColor(color1, color2, factor) {
+      if (arguments.length < 3) factor = 0.5;
+      const result = color1.slice();
+      for (let i = 0; i < 3; i++) {
+        result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+      }
+      return result;
+    }
+
+    function rgbToHex(rgb) {
+      return (
+        "#" +
+        rgb
+          .map((x) => {
+            const hex = x.toString(16);
+            return hex.length === 1 ? "0" + hex : hex;
+          })
+          .join("")
+      );
+    }
+
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+
+      for (let i = 0; i < sectionsColors.length - 1; i++) {
+        const curr = document.getElementById(sectionsColors[i].id);
+        const next = document.getElementById(sectionsColors[i + 1].id);
+
+        const currTop = curr.offsetTop;
+        const nextTop = next.offsetTop;
+
+        if (scrollY >= currTop && scrollY < nextTop) {
+          const factor = (scrollY - currTop) / (nextTop - currTop);
+          const col = interpolateColor(sectionsColors[i].color, sectionsColors[i + 1].color, factor);
+          document.body.style.backgroundColor = rgbToHex(col);
+          break;
+        }
+        if (scrollY >= sectionsColors[sectionsColors.length - 1].id.offsetTop) {
+          document.body.style.backgroundColor = rgbToHex(sectionsColors[sectionsColors.length - 1].color);
+        }
+      }
     });
+
+    // Initialize background color on page load
+    document.body.style.backgroundColor = rgbToHex(sectionsColors[0].color);
   </script>
 </body>
 </html>
