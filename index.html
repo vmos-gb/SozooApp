@@ -2,88 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PayDay - Make Saving Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sozoo</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <header class="hero">
-    <div class="logo">💸 PayDay</div>
-    <nav class="navbar">
-      <ul>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#demo">Demo</a></li>
-        <li><a href="#challenge">Challenges</a></li>
-        <li><a href="#join">Join</a></li>
-      </ul>
+  <header>
+    <div class="logo">Sozoo</div>
+    <nav class="nav-buttons">
+      <button data-target="home">Home</button>
+      <button data-target="savecard">SaveCard</button>
+      <button data-target="about">About</button>
     </nav>
-    <div class="hero-content">
-      <h1>Make saving money fun, social, and competitive</h1>
-      <p>Join weekly challenges with friends. Track progress. Climb the leaderboard.</p>
-      <a href="#join" class="cta">Join Waitlist</a>
-    </div>
   </header>
 
-  <section id="how" class="section how">
-    <h2>How It Works</h2>
-    <div class="steps">
-      <div class="step">
-        <h3>📱 Create a League</h3>
-        <p>Start a group with your friends and name your league.</p>
-      </div>
-      <div class="step">
-        <h3>⚡️ Weekly Challenges</h3>
-        <p>Spend less than your limit in areas like food, shopping, or takeaways.</p>
-      </div>
-      <div class="step">
-        <h3>📊 Compete Together</h3>
-        <p>Watch the leaderboard update live as friends complete challenges.</p>
-      </div>
-      <div class="step">
-        <h3>🏆 Earn Bragging Rights</h3>
-        <p>Get badges, streaks, and flex in the group chat.</p>
-      </div>
-    </div>
-  </section>
+  <main>
+    <section id="home" class="section">
+      <h1>Welcome to Sozoo</h1>
+      <p>Your social saving challenge app.</p>
+    </section>
 
-  <section id="demo" class="section demo">
-    <h2>Live Demo Preview</h2>
-    <div class="mockup">
-      <img src="images/demo-leaderboard.png" alt="Leaderboard preview" />
-      <img src="images/demo-challenge.png" alt="Challenge preview" />
-      <img src="images/demo-badges.png" alt="Badges preview" />
-    </div>
-  </section>
+    <section id="savecard" class="section">
+      <h2>SaveCard</h2>
+      <p>Save smart, earn badges, compete with friends.</p>
+    </section>
 
-  <section id="challenge" class="section challenge">
-    <h2>Challenge of the Week</h2>
-    <div class="challenge-card">
-      <h3>No Takeaway Week 🍔🚫</h3>
-      <p>Spend £0 on food delivery for 7 days. Cook at home and share your progress.</p>
-      <p><strong>Sponsored by:</strong> HelloFresh</p>
-      <ul>
-        <li>✅ Complete the challenge and earn a 25% HelloFresh discount</li>
-        <li>🔥 Top 100 users win a free recipe box</li>
-        <li>📈 Tracked through your open banking feed</li>
-      </ul>
-      <a href="#join" class="cta secondary">Join This Challenge</a>
-    </div>
-  </section>
+    <section id="about" class="section">
+      <h2>About Sozoo</h2>
+      <p>Inspired by the ancient Greek word for “save,” Sozoo helps you thrive financially with social challenges.</p>
+    </section>
+  </main>
 
-  <section id="join" class="section join">
-    <h2>Join the Waitlist</h2>
-    <p>Be among the first to try PayDay and start competing with your friends.</p>
-    <form>
-      <input type="email" placeholder="Enter your email" required />
-      <button type="submit">Get Early Access</button>
-    </form>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 PayDay. All rights reserved.</p>
-    <p><a href="#">Privacy</a> | <a href="#">Contact</a></p>
-  </footer>
+  <script>
+    // Smooth scroll on button click
+    const buttons = document.querySelectorAll('.nav-buttons button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
 </body>
 </html>
-
