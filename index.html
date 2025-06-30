@@ -1,47 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sozoo</title>
+  <title>Sozoo - Save, Play, Win</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
     <div class="logo">Sozoo</div>
-    <nav class="nav-buttons">
-      <button data-target="home">Home</button>
-      <button data-target="savecard">SaveCard</button>
-      <button data-target="about">About</button>
+    <nav class="nav-buttons" aria-label="Main navigation">
+      <button class="nav-btn active" data-section="home" aria-label="Home">
+        <i class="fa fa-home"></i><span class="btn-text">Home</span>
+      </button>
+      <button class="nav-btn" data-section="game" aria-label="Game">
+        <i class="fa fa-gamepad"></i><span class="btn-text">Game</span>
+      </button>
+      <button class="nav-btn" data-section="challenges" aria-label="Challenges">
+        <i class="fa fa-flag-checkered"></i><span class="btn-text">Challenges</span>
+      </button>
+      <button class="nav-btn" data-section="leaderboards" aria-label="Leaderboards">
+        <i class="fa fa-trophy"></i><span class="btn-text">Leaderboards</span>
+      </button>
     </nav>
   </header>
 
   <main>
-    <section id="home" class="section">
+    <section id="home" class="section active" tabindex="0">
       <h1>Welcome to Sozoo</h1>
-      <p>Your social saving challenge app.</p>
+      <p>
+        Sozoo makes saving money social, competitive, and fun.  
+        Build better habits by playing challenges with friends and climbing leaderboards.
+      </p>
+      <div class="iphone-mockup">
+        <img src="iphone-frame.png" alt="iPhone frame" />
+        <img class="app-screen" src="app-screenshot-home.png" alt="App home screen" />
+      </div>
+      <button class="primary-cta">Join the Waitlist</button>
     </section>
 
-    <section id="savecard" class="section">
-      <h2>SaveCard</h2>
-      <p>Save smart, earn badges, compete with friends.</p>
+    <section id="game" class="section" tabindex="0">
+      <h1>The Game</h1>
+      <p>
+        Join groups with friends and compete in weekly saving challenges like “No Takeaway Week” or “Coffee Cutback Challenge.”  
+      </p>
+      <p>
+        Track progress in real-time, earn badges, and push each other to save more.
+      </p>
+      <div class="iphone-mockup">
+        <img src="iphone-frame.png" alt="iPhone frame" />
+        <img class="app-screen" src="app-screenshot-game.png" alt="App game screen" />
+      </div>
     </section>
 
-    <section id="about" class="section">
-      <h2>About Sozoo</h2>
-      <p>Inspired by the ancient Greek word for “save,” Sozoo helps you thrive financially with social challenges.</p>
+    <section id="challenges" class="section" tabindex="0">
+      <h1>Challenges</h1>
+      <p>
+        Engage in fun, meaningful challenges sponsored by brands that align with your values.  
+        Win social recognition and climb the weekly leaderboard.
+      </p>
+      <div class="iphone-mockup">
+        <img src="iphone-frame.png" alt="iPhone frame" />
+        <img class="app-screen" src="app-screenshot-challenges.png" alt="App challenges screen" />
+      </div>
+    </section>
+
+    <section id="leaderboards" class="section" tabindex="0">
+      <h1>Leaderboards</h1>
+      <p>
+        See who’s leading the pack!  
+        Rank based on challenge wins, savings streaks, and % of income saved (adjusted fairly).
+      </p>
+      <div class="iphone-mockup">
+        <img src="iphone-frame.png" alt="iPhone frame" />
+        <img class="app-screen" src="app-screenshot-leaderboards.png" alt="App leaderboards screen" />
+      </div>
     </section>
   </main>
 
   <script>
-    // Smooth scroll on button click
-    const buttons = document.querySelectorAll('.nav-buttons button');
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const targetId = button.getAttribute('data-target');
-        document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+    const buttons = document.querySelectorAll(".nav-btn");
+    const sections = document.querySelectorAll(".section");
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-section");
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: "smooth" });
+          buttons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        }
       });
+    });
+
+    // Highlight nav button on scroll
+    window.addEventListener("scroll", () => {
+      let scrollPos = window.scrollY + window.innerHeight / 3;
+      sections.forEach((sec) => {
+        const top = sec.offsetTop;
+        const bottom = top + sec.offsetHeight;
+        const id = sec.id;
+        const btn = document.querySelector(`.nav-btn[data-section="${id}"]`);
+        if (scrollPos >= top && scrollPos < bottom) {
+          btn?.classList.add("active");
+        } else {
+          btn?.classList.remove("active");
+        }
+      });
+    });
+
+    // Show nav buttons only on header hover
+    const header = document.querySelector("header");
+    const navButtons = document.querySelector(".nav-buttons");
+    navButtons.style.opacity = "0";
+    navButtons.style.pointerEvents = "none";
+
+    header.addEventListener("mouseenter", () => {
+      navButtons.style.opacity = "1";
+      navButtons.style.pointerEvents = "auto";
+    });
+
+    header.addEventListener("mouseleave", () => {
+      navButtons.style.opacity = "0";
+      navButtons.style.pointerEvents = "none";
     });
   </script>
 </body>
