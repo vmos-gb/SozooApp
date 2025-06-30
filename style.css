@@ -120,6 +120,25 @@ main {
   text-shadow: 0 1px 4px rgba(255 255 255 / 0.5);
 }
 
+/* Quote slide */
+.quote-slide {
+  font-style: italic;
+  font-weight: 600;
+  color: #fff;
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin: 0.5rem auto 2rem;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.quote-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* iPhone mockup */
 .iphone-mockup {
   margin: 3rem auto 1.5rem;
@@ -172,5 +191,3 @@ main {
   color: white;
   box-shadow: 0 0 30px #ff7f50;
 }
-
-/*
